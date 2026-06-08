@@ -4,13 +4,59 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { toast } from "sonner"
+import { useState } from "react"
 
 export function LoginForm2({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const [loading, setLoading] = useState(false)
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const form = e.currentTarget
+    const data = new FormData(form)
+    const username = String(data.get("email") ?? "").trim()
+    const password = String(data.get("password") ?? "")
+
+    setLoading(true)
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      })
+
+      if (!res.ok) {
+        toast.error('Login failed')
+        setLoading(false)
+        return
+      }
+
+      const json = await res.json()
+
+      if (!json?.token) {
+        toast.error("Invalid login response")
+        return
+      }
+
+      localStorage.setItem("token", json.token)
+
+      if (json.user) {
+        localStorage.setItem("user", JSON.stringify(json.user))
+      }
+
+      toast.success("Logged in")
+      window.location.href = "/dashboard"
+
+    } catch (err) {
+      toast.error('Login error')
+    } finally { setLoading(false) }
+  }
+
   return (
-    <form className={cn("flex flex-col gap-6", className)} {...props} action="/dashboard">
+    <form className={cn("flex flex-col gap-6", className)} onSubmit={handleSubmit} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Login to your account</h1>
         <p className="text-muted-foreground text-sm text-balance">
@@ -20,7 +66,7 @@ export function LoginForm2({
       <div className="grid gap-6">
         <div className="grid gap-3">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="test@example.com" defaultValue="test@example.com" required />
+          <Input id="email" name="email" type="email" placeholder="test@example.com" required />
         </div>
         <div className="grid gap-3">
           <div className="flex items-center">
@@ -32,10 +78,10 @@ export function LoginForm2({
               Forgot your password?
             </a>
           </div>
-          <Input id="password" type="password" defaultValue="password" required />
+          <Input id="password" name="password" type="password" required />
         </div>
-        <Button type="submit" className="w-full cursor-pointer">
-          Login
+        <Button type="submit" className="w-full cursor-pointer" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
         </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
           <span className="bg-background text-muted-foreground relative z-10 px-2">

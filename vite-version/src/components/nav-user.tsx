@@ -19,23 +19,40 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { logout } from '@/lib/auth'
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useEffect, useState } from "react"
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}) {
+type User = {
+  name: string
+  email: string
+  avatar?: string
+}
+
+export function NavUser() {
   const { isMobile } = useSidebar()
+
+  const [user, setUser] = useState<User>({
+    name: "Guest",
+    email: "",
+  })
+
+  useEffect(() => {
+    const stored = localStorage.getItem("user")
+    if (stored) {
+      const parsed = JSON.parse(stored)
+
+      setUser({
+        name: parsed.firstName + " " + parsed.lastName,
+        email: parsed.username || "",
+      })
+    }
+  }, [])
 
   return (
     <SidebarMenu>
@@ -100,10 +117,17 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild className="cursor-pointer">
-              <Link to="/sign-in">
+              <button
+                type="button"
+                className="flex w-full items-center gap-2"
+                onClick={() => {
+                  logout()
+                  window.location.href = '/auth/sign-in-2'
+                }}
+              >
                 <LogOut />
                 Log out
-              </Link>
+              </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

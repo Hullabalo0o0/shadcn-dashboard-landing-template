@@ -4,8 +4,8 @@ import * as React from "react"
 import { AppSidebar } from "@/components/app-sidebar"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { ThemeCustomizer, ThemeCustomizerTrigger } from "@/components/theme-customizer"
-import { UpgradeToProButton } from "@/components/upgrade-to-pro-button"
+// import { ThemeCustomizer, ThemeCustomizerTrigger } from "@/components/theme-customizer"
+// import { UpgradeToProButton } from "@/components/upgrade-to-pro-button"
 import { useSidebarConfig } from "@/hooks/use-sidebar-config"
 import {
   SidebarInset,
@@ -19,9 +19,9 @@ interface BaseLayoutProps {
 }
 
 export function BaseLayout({ children, title, description }: BaseLayoutProps) {
-  const [themeCustomizerOpen, setThemeCustomizerOpen] = React.useState(false)
+  //const [themeCustomizerOpen, setThemeCustomizerOpen] = React.useState(false)
   const { config } = useSidebarConfig()
-
+  
   return (
     <SidebarProvider
       style={
@@ -45,6 +45,8 @@ export function BaseLayout({ children, title, description }: BaseLayoutProps) {
             <div className="flex flex-1 flex-col">
               <div className="@container/main flex flex-1 flex-col gap-2">
                 <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+                  <div className="mx-0 px-4 lg:px-6">
+                  </div>
                   {title && (
                     <div className="px-4 lg:px-6">
                       <div className="flex flex-col gap-2">
@@ -94,12 +96,12 @@ export function BaseLayout({ children, title, description }: BaseLayoutProps) {
       )}
       
       {/* Theme Customizer */}
-      <ThemeCustomizerTrigger onClick={() => setThemeCustomizerOpen(true)} />
+      {/* <ThemeCustomizerTrigger onClick={() => setThemeCustomizerOpen(true)} />
       <ThemeCustomizer 
         open={themeCustomizerOpen} 
         onOpenChange={setThemeCustomizerOpen} 
-      />
-      <UpgradeToProButton />
+      /> */}
+      {/* <UpgradeToProButton /> */}
     </SidebarProvider>
   )
 }

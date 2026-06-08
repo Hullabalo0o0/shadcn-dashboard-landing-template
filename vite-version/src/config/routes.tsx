@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { Navigate } from 'react-router-dom'
+import { AuthRedirect } from '@/components/router/auth-redirect'
 
 // Lazy load components for better performance
 const Landing = lazy(() => import('@/app/landing/page'))
@@ -14,15 +14,9 @@ const FAQs = lazy(() => import('@/app/faqs/page'))
 const Pricing = lazy(() => import('@/app/pricing/page'))
 
 // Auth pages
-const SignIn = lazy(() => import('@/app/auth/sign-in/page'))
 const SignIn2 = lazy(() => import('@/app/auth/sign-in-2/page'))
-const SignIn3 = lazy(() => import('@/app/auth/sign-in-3/page'))
-const SignUp = lazy(() => import('@/app/auth/sign-up/page'))
 const SignUp2 = lazy(() => import('@/app/auth/sign-up-2/page'))
-const SignUp3 = lazy(() => import('@/app/auth/sign-up-3/page'))
-const ForgotPassword = lazy(() => import('@/app/auth/forgot-password/page'))
 const ForgotPassword2 = lazy(() => import('@/app/auth/forgot-password-2/page'))
-const ForgotPassword3 = lazy(() => import('@/app/auth/forgot-password-3/page'))
 
 // Error pages
 const Unauthorized = lazy(() => import('@/app/errors/unauthorized/page'))
@@ -42,15 +36,15 @@ const ConnectionSettings = lazy(() => import('@/app/settings/connections/page'))
 export interface RouteConfig {
   path: string
   element: React.ReactNode
+  protected?: boolean
   children?: RouteConfig[]
 }
 
 export const routes: RouteConfig[] = [
-  // Default route - redirect to dashboard
-  // Use relative path "dashboard" instead of "/dashboard" for basename compatibility
+  // Default route - redirect based on auth status
   {
     path: "/",
-    element: <Navigate to="dashboard" replace />
+    element: <AuthRedirect />
   },
 
   // Landing Page
@@ -62,35 +56,42 @@ export const routes: RouteConfig[] = [
   // Dashboard Routes
   {
     path: "/dashboard",
-    element: <Dashboard />
+    element: <Dashboard />,
+    protected: true
   },
   {
     path: "/dashboard-2",
-    element: <Dashboard2 />
+    element: <Dashboard2 />,
+    protected: true
   },
 
   // Application Routes
   {
     path: "/mail",
-    element: <Mail />
+    element: <Mail />,
+    protected: true
   },
   {
     path: "/tasks",
-    element: <Tasks />
+    element: <Tasks />,
+    protected: true
   },
   {
     path: "/chat",
-    element: <Chat />
+    element: <Chat />,
+    protected: true
   },
   {
     path: "/calendar",
-    element: <Calendar />
+    element: <Calendar />,
+    protected: true
   },
 
   // Content Pages
   {
     path: "/users",
-    element: <Users />
+    element: <Users />,
+    protected: true
   },
   {
     path: "/faqs",
@@ -103,40 +104,16 @@ export const routes: RouteConfig[] = [
 
   // Authentication Routes
   {
-    path: "/auth/sign-in",
-    element: <SignIn />
-  },
-  {
     path: "/auth/sign-in-2",
     element: <SignIn2 />
-  },
-  {
-    path: "/auth/sign-in-3",
-    element: <SignIn3 />
-  },
-  {
-    path: "/auth/sign-up",
-    element: <SignUp />
   },
   {
     path: "/auth/sign-up-2",
     element: <SignUp2 />
   },
   {
-    path: "/auth/sign-up-3",
-    element: <SignUp3 />
-  },
-  {
-    path: "/auth/forgot-password",
-    element: <ForgotPassword />
-  },
-  {
     path: "/auth/forgot-password-2",
     element: <ForgotPassword2 />
-  },
-  {
-    path: "/auth/forgot-password-3",
-    element: <ForgotPassword3 />
   },
 
   // Error Pages
@@ -164,27 +141,33 @@ export const routes: RouteConfig[] = [
   // Settings Routes
   {
     path: "/settings/user",
-    element: <UserSettings />
+    element: <UserSettings />,
+    protected: true
   },
   {
     path: "/settings/account",
-    element: <AccountSettings />
+    element: <AccountSettings />,
+    protected: true
   },
   {
     path: "/settings/billing",
-    element: <BillingSettings />
+    element: <BillingSettings />,
+    protected: true
   },
   {
     path: "/settings/appearance",
-    element: <AppearanceSettings />
+    element: <AppearanceSettings />,
+    protected: true
   },
   {
     path: "/settings/notifications",
-    element: <NotificationSettings />
+    element: <NotificationSettings />,
+    protected: true
   },
   {
     path: "/settings/connections",
-    element: <ConnectionSettings />
+    element: <ConnectionSettings />,
+    protected: true
   },
 
   // Catch-all route for 404

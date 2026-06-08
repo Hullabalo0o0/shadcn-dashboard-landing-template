@@ -18,7 +18,7 @@ import {
 } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Logo } from "@/components/logo"
-import { SidebarNotification } from "@/components/sidebar-notification"
+//import { SidebarNotification } from "@/components/sidebar-notification"
 
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
@@ -31,11 +31,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+// import { SidebarNotification } from "./sidebar-notification"
 
 const data = {
   user: {
-    name: "ShadcnStore",
-    email: "store@example.com",
+    name: "Ascendtrix",
+    email: "ascendtrix@gmail.com",
     avatar: "",
   },
   navGroups: [
@@ -99,41 +100,17 @@ const data = {
           icon: Shield,
           items: [
             {
-              title: "Sign In 1",
-              url: "/auth/sign-in",
-            },
-            {
-              title: "Sign In 2",
+              title: "Sign In",
               url: "/auth/sign-in-2",
             },
             {
-              title: "Sign In 3",
-              url: "/auth/sign-in-3",
-            },
-            {
-              title: "Sign Up 1",
-              url: "/auth/sign-up",
-            },
-            {
-              title: "Sign Up 2",
+              title: "Sign Up",
               url: "/auth/sign-up-2",
             },
             {
-              title: "Sign Up 3",
-              url: "/auth/sign-up-3",
-            },
-            {
-              title: "Forgot Password 1",
-              url: "/auth/forgot-password",
-            },
-            {
-              title: "Forgot Password 2",
+              title: "Forgot Password",
               url: "/auth/forgot-password-2",
             },
-            {
-              title: "Forgot Password 3",
-              url: "/auth/forgot-password-3",
-            }
           ],
         },
         {
@@ -217,12 +194,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link to="/dashboard">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <Logo size={24} className="text-current" />
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-primary-foreground">
+                  <Logo size={30} className="text-current" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">ShadcnStore</span>
-                  <span className="truncate text-xs">Admin Dashboard</span>
+                  <span className="truncate font-medium">Ascendtrix</span>
+                  <span className="truncate text-xs">IT Solutions</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -235,8 +212,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <SidebarNotification />
-        <NavUser user={data.user} />
+        {/* <SidebarNotification /> */}
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   )
