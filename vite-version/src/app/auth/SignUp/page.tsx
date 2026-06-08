@@ -1,4 +1,4 @@
-import { SignupForm2 } from "./components/signup-form-2"
+import { Signup } from "./components/signup"
 import { Logo } from "@/components/logo"
 
 export default function SignUp2Page() {
@@ -15,7 +15,7 @@ export default function SignUp2Page() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-md">
-            <SignupForm2 />
+            <Signup />
           </div>
         </div>
       </div>

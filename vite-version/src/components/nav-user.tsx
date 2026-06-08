@@ -122,7 +122,7 @@ export function NavUser() {
                 className="flex w-full items-center gap-2"
                 onClick={() => {
                   logout()
-                  window.location.href = '/auth/sign-in-2'
+                  window.location.href = '/SignIn'
                 }}
               >
                 <LogOut />

@@ -1,4 +1,4 @@
-import { LoginForm2 } from "./components/login-form-2"
+import { Login } from "./components/login"
 import { Logo } from "@/components/logo"
 
 export default function LoginPage() {
@@ -15,7 +15,7 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-md">
-            <LoginForm2 />
+            <Login />
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { toast } from "sonner"
 import { useState } from "react"
 
-export function ForgotPasswordForm2({
+export function forgotpassword({
   className,
   ...props
 }: React.ComponentProps<"form">) {

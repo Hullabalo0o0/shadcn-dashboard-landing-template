@@ -17,7 +17,5 @@ export function AuthRedirect() {
     return null
   }
 
-  console.log('Authenticated:', authenticated)
-
-  return authenticated ? <Navigate to="/dashboard" replace /> : <Navigate to="/auth/sign-in-2" replace />
+  return authenticated ? <Navigate to="/dashboard" replace /> : <Navigate to="/SignIn" replace />
 }

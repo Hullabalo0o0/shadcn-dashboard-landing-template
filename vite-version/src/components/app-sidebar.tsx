@@ -101,15 +101,15 @@ const data = {
           items: [
             {
               title: "Sign In",
-              url: "/auth/sign-in-2",
+              url: "/SignIn",
             },
             {
               title: "Sign Up",
-              url: "/auth/sign-up-2",
+              url: "/SignUp",
             },
             {
               title: "Forgot Password",
-              url: "/auth/forgot-password-2",
+              url: "/ForgotPassword",
             },
           ],
         },

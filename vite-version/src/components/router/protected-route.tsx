@@ -21,5 +21,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     return null
   }
 
-  return authenticated ? <>{children}</> : <Navigate to="/auth/sign-in-2" replace />
+  console.log("ProtectedRoute: authenticated =", authenticated)
+
+  return authenticated ? <>{children}</> : <Navigate to="/SignIn" replace />
 }

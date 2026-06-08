@@ -1,4 +1,4 @@
-import { ForgotPasswordForm2 } from "./components/forgot-password-form-2"
+import { ForgotPassword } from "./components/forgotpassword"
 import { Logo } from "@/components/logo"
 
 export default function ForgotPassword2Page() {
@@ -15,7 +15,7 @@ export default function ForgotPassword2Page() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-md">
-            <ForgotPasswordForm2 />
+            <ForgotPassword />
           </div>
         </div>
       </div>

@@ -14,9 +14,9 @@ const FAQs = lazy(() => import('@/app/faqs/page'))
 const Pricing = lazy(() => import('@/app/pricing/page'))
 
 // Auth pages
-const SignIn2 = lazy(() => import('@/app/auth/sign-in-2/page'))
-const SignUp2 = lazy(() => import('@/app/auth/sign-up-2/page'))
-const ForgotPassword2 = lazy(() => import('@/app/auth/forgot-password-2/page'))
+const SignIn = lazy(() => import('@/app/auth/SignIn/page'))
+const SignUp = lazy(() => import('@/app/auth/SignUp/page'))
+const ForgotPassword = lazy(() => import('@/app/auth/ForgotPassword/page'))
 
 // Error pages
 const Unauthorized = lazy(() => import('@/app/errors/unauthorized/page'))
@@ -104,16 +104,16 @@ export const routes: RouteConfig[] = [
 
   // Authentication Routes
   {
-    path: "/auth/sign-in-2",
-    element: <SignIn2 />
+    path: "/SignIn",
+    element: <SignIn />
   },
   {
-    path: "/auth/sign-up-2",
-    element: <SignUp2 />
+    path: "/SignUp",
+    element: <SignUp />
   },
   {
-    path: "/auth/forgot-password-2",
-    element: <ForgotPassword2 />
+    path: "/ForgotPassword",
+    element: <ForgotPassword />
   },
 
   // Error Pages
