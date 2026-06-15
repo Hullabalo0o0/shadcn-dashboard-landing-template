@@ -2,36 +2,39 @@ import { lazy } from 'react'
 import { AuthRedirect } from '@/components/router/auth-redirect'
 
 // Lazy load components for better performance
-const Landing = lazy(() => import('@/app/landing/page'))
-const Dashboard = lazy(() => import('@/app/dashboard/page'))
-const Dashboard2 = lazy(() => import('@/app/dashboard-2/page'))
-const Mail = lazy(() => import('@/app/mail/page'))
-const Tasks = lazy(() => import('@/app/tasks/page'))
-const Chat = lazy(() => import('@/app/chat/page'))
-const Calendar = lazy(() => import('@/app/calendar/page'))
-const Users = lazy(() => import('@/app/users/page'))
-const FAQs = lazy(() => import('@/app/faqs/page'))
-const Pricing = lazy(() => import('@/app/pricing/page'))
+const Landing = lazy(() => import('@/landing/page'))
+const Dashboard = lazy(() => import('@/dashboard/page'))
+const Dashboard2 = lazy(() => import('@/dashboard-2/page'))
+const Mail = lazy(() => import('@/mail/page'))
+const Tasks = lazy(() => import('@/tasks/page'))
+const Chat = lazy(() => import('@/chat/page'))
+const Calendar = lazy(() => import('@/calendar/page'))
+const Users = lazy(() => import('@/users/page'))
+const FAQs = lazy(() => import('@/faqs/page'))
+const Pricing = lazy(() => import('@/pricing/page'))
 
 // Auth pages
-const SignIn = lazy(() => import('@/app/auth/SignIn/page'))
-const SignUp = lazy(() => import('@/app/auth/SignUp/page'))
-const ForgotPassword = lazy(() => import('@/app/auth/ForgotPassword/page'))
+const SignIn = lazy(() => import('@/auth/SignIn/page'))
+const SignUp = lazy(() => import('@/auth/SignUp/page'))
+const ForgotPassword = lazy(() => import('@/auth/ForgotPassword/page'))
 
 // Error pages
-const Unauthorized = lazy(() => import('@/app/errors/unauthorized/page'))
-const Forbidden = lazy(() => import('@/app/errors/forbidden/page'))
-const NotFound = lazy(() => import('@/app/errors/not-found/page'))
-const InternalServerError = lazy(() => import('@/app/errors/internal-server-error/page'))
-const UnderMaintenance = lazy(() => import('@/app/errors/under-maintenance/page'))
+const Unauthorized = lazy(() => import('@/errors/unauthorized/page'))
+const Forbidden = lazy(() => import('@/errors/forbidden/page'))
+const NotFound = lazy(() => import('@/errors/not-found/page'))
+const InternalServerError = lazy(() => import('@/errors/internal-server-error/page'))
+const UnderMaintenance = lazy(() => import('@/errors/under-maintenance/page'))
 
 // Settings pages
-const UserSettings = lazy(() => import('@/app/settings/user/page'))
-const AccountSettings = lazy(() => import('@/app/settings/account/page'))
-const BillingSettings = lazy(() => import('@/app/settings/billing/page'))
-const AppearanceSettings = lazy(() => import('@/app/settings/appearance/page'))
-const NotificationSettings = lazy(() => import('@/app/settings/notifications/page'))
-const ConnectionSettings = lazy(() => import('@/app/settings/connections/page'))
+const UserSettings = lazy(() => import('@/settings/user/page'))
+const AccountSettings = lazy(() => import('@/settings/account/page'))
+const BillingSettings = lazy(() => import('@/settings/billing/page'))
+const AppearanceSettings = lazy(() => import('@/settings/appearance/page'))
+const NotificationSettings = lazy(() => import('@/settings/notifications/page'))
+const ConnectionSettings = lazy(() => import('@/settings/connections/page'))
+
+// Queueing page
+const QueueingPanel = lazy(() => import('@/Queueing/QueuePanel/page'))
 
 export interface RouteConfig {
   path: string
@@ -51,6 +54,12 @@ export const routes: RouteConfig[] = [
   {
     path: "/landing",
     element: <Landing />
+  },
+
+  // Queueing Page
+  {
+    path: "/queueing",
+    element: <QueueingPanel />
   },
 
   // Dashboard Routes

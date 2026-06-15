@@ -34,11 +34,6 @@ import {
 // import { SidebarNotification } from "./sidebar-notification"
 
 const data = {
-  user: {
-    name: "Ascendtrix",
-    email: "ascendtrix@gmail.com",
-    avatar: "",
-  },
   navGroups: [
     {
       label: "Dashboards",
@@ -82,6 +77,55 @@ const data = {
           title: "Users",
           url: "/users",
           icon: Users,
+        },
+      ],
+    },
+    {
+      label: "Queueing",
+      items: [
+        {
+          title: "Queueing Panel",
+          url: "/queueing",
+          target: "_blank",
+          icon: LayoutPanelLeft,
+        },
+        {
+          title: "Control Panel",
+          url: "#",
+          icon: Shield,
+          items: [
+            {
+              title: "Sign In",
+              url: "/SignIn",
+            },
+            {
+              title: "Sign Up",
+              url: "/SignUp",
+            },
+            {
+              title: "Forgot Password",
+              url: "/ForgotPassword",
+            },
+          ],
+        },
+        {
+          title: "Control Panel",
+          url: "#",
+          icon: Shield,
+          items: [
+            {
+              title: "Sign In",
+              url: "/SignIn",
+            },
+            {
+              title: "Sign Up",
+              url: "/SignUp",
+            },
+            {
+              title: "Forgot Password",
+              url: "/ForgotPassword",
+            },
+          ],
         },
       ],
     },
