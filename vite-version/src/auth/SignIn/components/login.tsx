@@ -9,6 +9,8 @@ import { toast } from "sonner"
 import { useForm } from "@tanstack/react-form"
 import { loginSchema } from "@/schemas/auth.schema"
 
+import { api } from "@/lib/api"
+
 export function Login({
   className,
   ...props
@@ -19,6 +21,7 @@ export function Login({
       email: "",
       password: "",
     },
+    
 
     validators: {
       onChange: ({ value }) => {
@@ -34,13 +37,9 @@ export function Login({
 
     onSubmit: async ({ value }) => {
       try {
-        const res = await fetch("/api/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            username: value.email,
-            password: value.password,
-          }),
+        const res = await api.post("/api/auth/login", {
+          username: value.email,
+          password: value.password,
         })
 
         if (!res.ok) {

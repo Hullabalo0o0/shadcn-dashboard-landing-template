@@ -6,18 +6,22 @@ using MyAPI.Api.Endpoints;
 using MyAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+var jwtKey = builder.Configuration["Jwt:Key"]
+    ?? throw new InvalidOperationException("Jwt:Key is missing.");
 
-builder.WebHost.UseUrls("http://localhost:5000");
 builder.Services.AddOpenApi();
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("frontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "http://127.0.0.1:5173")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+        policy.WithOrigins(
+            "http://localhost:5173",
+            "http://127.0.0.1:5173",
+            "https://barber-shop-kiosk.vercel.app"
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod();
     });
 });
 
@@ -33,9 +37,9 @@ builder.Services.AddAuthentication(options =>
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? string.Empty)),
-        ValidateIssuer = true,
-        ValidateAudience = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+        ValidateIssuer = false,
+        ValidateAudience = false,
         ValidIssuer = builder.Configuration["Jwt:Issuer"] ?? "local",
         ValidAudience = builder.Configuration["Jwt:Issuer"] ?? "local",
         ClockSkew = TimeSpan.Zero
@@ -59,13 +63,12 @@ if (string.IsNullOrWhiteSpace(connectionString))
         "The connection string 'DefaultConnection' is not configured.");
 }
 
-var jwtKey = builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key is missing.");
-
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "local";
 
 app.UseCors("frontend");
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseHttpsRedirection();
 
 // Register Authentication Routes
 app.MapAuthEndpoints(
