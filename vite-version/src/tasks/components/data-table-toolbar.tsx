@@ -131,7 +131,7 @@ export function DataTableToolbar<TData>({
                   className="cursor-pointer"
                 >
                   <div className="flex items-center">
-                    {priority.icon && (
+                    {(priority as any).icon && (
                       <priority.icon className="mr-2 h-4 w-4 text-muted-foreground" />
                     )}
                     {priority.label}

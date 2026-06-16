@@ -86,3 +86,4 @@ storybook-static
 
 # Deployment scripts (contain server-specific paths)
 *.env.production
+*.env.development

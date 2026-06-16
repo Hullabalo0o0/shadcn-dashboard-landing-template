@@ -5,6 +5,8 @@ import {
   PlayCircle,
 } from "lucide-react"
 
+import { AlertTriangle, Minus, ArrowDown } from "lucide-react"
+
 export const categories = [
   {
     value: "bug",
@@ -53,19 +55,18 @@ export const statuses = [
 
 export const priorities = [
   {
-    label: "Minor",
-    value: "minor"
+    label: "High",
+    value: "high",
+    icon: AlertTriangle,
   },
   {
-    label: "Normal",
-    value: "normal"
+    label: "Medium",
+    value: "medium",
+    icon: Minus,
   },
   {
-    label: "Important",
-    value: "important"
-  },
-  {
-    label: "Critical",
-    value: "critical"
+    label: "Low",
+    value: "low",
+    icon: ArrowDown,
   },
 ]
