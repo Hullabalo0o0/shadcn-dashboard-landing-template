@@ -18,6 +18,7 @@ export const api = {
   },
 
   post: async (url: string, body: unknown) => {
+    console.log("API POST:", `${API_URL}${url}`, body)
     return fetch(`${API_URL}${url}`, {
       method: "POST",
       headers: getAuthHeaders(),
